@@ -44,8 +44,10 @@ class AznotePlayer extends Player
         {
             return parent::friendChoice();
         }
+            
 
-        else if ($this->result->getLastChoiceFor($this->mySide) == 'foe' || $this->result->getLastChoiceFor($this->opponentSide) == 'foe')
+        else if ($this->result->getLastChoiceFor($this->mySide) == 'foe' || $this->result->getLastChoiceFor($this->opponentSide) == 'foe'
+                 || $this->result->getNbRound() == 9 )
         {
            return parent::foeChoice();
         }
