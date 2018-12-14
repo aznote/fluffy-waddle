@@ -14,7 +14,7 @@ class AznotePlayer extends Player
     protected $mySide;
     protected $opponentSide;
     protected $result;
-
+    private $count = 0;
     public function getChoice()
     {
         // -------------------------------------    -----------------------------------------------------
@@ -42,11 +42,17 @@ class AznotePlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         if (!$this->result->getLastChoiceFor($this->mySide))
         {
-            return parent::FoeChoice();
+            return parent::friendChoice();
         }
             
-
-        else if ( $this->result->getLastChoiceFor($this->opponentSide) == 'foe')
+        else if (($this->result->getLastChoiceFor($this->mySide) == 'foe' && $this->count = 0 &&  
+                  $this->result->getLastChoiceFor($this->opponentSide) == 'friend'))
+        {
+            $this->count = 1;
+            return parent::foeChoice();
+        }
+        // If the other player returned foe 1 time I always return foe
+        else if ($this->result->getLastChoiceFor($this->opponentSide) == 'foe')
         {
            return parent::foeChoice();
         }
