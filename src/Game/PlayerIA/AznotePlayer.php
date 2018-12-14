@@ -54,6 +54,7 @@ class AznotePlayer extends Player
         // If the other player returned foe 1 time I always return foe
         else if ($this->result->getLastChoiceFor($this->opponentSide) == 'foe')
         {
+           $this->count = 0;
            return parent::foeChoice();
         }
         return parent::friendChoice();
